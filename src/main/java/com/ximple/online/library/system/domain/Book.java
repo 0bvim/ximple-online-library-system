@@ -39,8 +39,10 @@ public class Book {
     private int availableCopies;
 
     @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
+    @Builder.Default
     private Set<Reservation> reservations = new HashSet<>();
 
     @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
+    @Builder.Default
     private Set<Review> reviews = new HashSet<>();
 }
