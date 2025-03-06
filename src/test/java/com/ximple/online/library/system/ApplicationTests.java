@@ -1,10 +1,10 @@
-package com.example.online_library_system;
+package com.ximple.online.library.system;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class OnlineLibrarySystemApplicationTests {
+class ApplicationTests {
 
 	@Test
 	void contextLoads() {
