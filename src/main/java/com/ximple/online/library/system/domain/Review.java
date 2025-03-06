@@ -10,23 +10,20 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
-
 /**
  *
  * @author vini
  */
 @Entity
-@Table(name = "reservations")
+@Table(name = "reviews")
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Reservation {
+public class Review {
     @Id
     @GeneratedValue
     private UUID id;
@@ -39,10 +36,7 @@ public class Reservation {
     @JoinColumn(name = "book_id")
     private Book book;
 
-    private LocalDateTime reservationDate;
-    private LocalDate dueDate;
-    private LocalDateTime returnDate;
-
-    @Enumerated(EnumType.STRING)
-    private ReservationStatus status;
+    private int rating;
+    private String comment;
+    private LocalDateTime createdAt;
 }
