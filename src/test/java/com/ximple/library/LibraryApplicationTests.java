@@ -1,10 +1,10 @@
-package com.ximple.online.library.system;
+package com.ximple.library;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ApplicationTests {
+class LibraryApplicationTests {
 
 	@Test
 	void contextLoads() {
