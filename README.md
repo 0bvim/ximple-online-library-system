@@ -1,3 +1,4 @@
+## Architecture Overview
 ```mermaid
 flowchart TD
     classDef api fill:#92D050,color:#000,stroke:#92D050
@@ -29,5 +30,42 @@ flowchart TD
     ReservationSvc --> Repo
     ReviewSvc --> Repo
     Repo --> DB
+```
 
+## Database Schema
+```mermaid
+erDiagram
+    BOOK ||--o{ RESERVATION : "has"
+    BOOK ||--o{ REVIEW : "has"
+    USER ||--o{ RESERVATION : "makes"
+    USER ||--o{ REVIEW : "writes"
+    BOOK {
+        string id PK
+        string title
+        string author
+        string isbn
+        string genre
+        boolean available
+    }
+    USER {
+        string id PK
+        string username
+        string email
+    }
+    RESERVATION {
+        string id PK
+        string book_id FK
+        string user_id FK
+        date reservation_date
+        date due_date
+        string status
+    }
+    REVIEW {
+        string id PK
+        string book_id FK
+        string user_id FK
+        int rating
+        string comment
+        date created_at
+    }
 ```
