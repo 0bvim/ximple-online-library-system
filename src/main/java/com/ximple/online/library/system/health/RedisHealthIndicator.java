@@ -5,7 +5,6 @@ import org.springframework.boot.actuate.health.Health;
 import org.springframework.boot.actuate.health.HealthIndicator;
 import org.springframework.data.redis.connection.RedisConnection;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
-import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -17,7 +16,7 @@ public class RedisHealthIndicator implements HealthIndicator {
     @Override
     public Health health() {
         try (RedisConnection connection = redisConnectionFactory.getConnection()) {
-            String pong = new String(connection.ping());
+            String pong = connection.ping();
             if ("PONG".equals(pong)) {
                 return Health.up().withDetail("status", "Redis is running").build();
             } else {
