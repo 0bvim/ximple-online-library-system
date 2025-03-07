@@ -34,7 +34,7 @@ public class RunRepository {
 
     void delete(Integer id) {
         Optional<Run> existingRun = findById(id);
-        existingRun.ifPresent(run -> runs.remove(run));
+        existingRun.ifPresent(runs::remove);
     }
 
     @PostConstruct
