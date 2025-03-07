@@ -3,7 +3,6 @@ package com.ximple.library.model;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Positive;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.Version;
 
 import java.time.LocalDateTime;
 
