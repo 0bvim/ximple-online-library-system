@@ -1,4 +1,5 @@
 ## Architecture Overview
+The application is divided into three layers: API, Service, and Data Access. The API layer handles HTTP requests and responses, the Service layer contains the business logic, and the Data Access layer interacts with the database.
 ```mermaid
 flowchart TD
     classDef api fill:#92D050,color:#000,stroke:#92D050
