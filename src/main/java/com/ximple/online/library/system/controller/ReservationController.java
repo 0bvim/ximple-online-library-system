@@ -26,13 +26,6 @@ public class ReservationController {
 
     @PostMapping
     @Operation(summary = "Reserve a book", description = "Create a new reservation for a book")
-    @ApiResponses(value = {
-        @ApiResponse(responseCode = "201", description = "Reservation created successfully"),
-        @ApiResponse(responseCode = "400", description = "Invalid request parameters"),
-        @ApiResponse(responseCode = "404", description = "Book or user not found"),
-        @ApiResponse(responseCode = "409", description = "Book already reserved"),
-        @ApiResponse(responseCode = "422", description = "Book not available for reservation")
-    })
     public ResponseEntity<Reservation> createReservation(@Valid @RequestBody ReservationRequest request) {
         Reservation reservation = bookService.createReservation(request.userId(), request.bookId());
         return new ResponseEntity<>(reservation, HttpStatus.CREATED);

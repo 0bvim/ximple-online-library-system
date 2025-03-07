@@ -26,13 +26,6 @@ public class ReviewController {
 
     @PostMapping
     @Operation(summary = "Submit a review", description = "Submit a new review for a book")
-    @ApiResponses(value = {
-        @ApiResponse(responseCode = "201", description = "Review created successfully"),
-        @ApiResponse(responseCode = "400", description = "Invalid request parameters"),
-        @ApiResponse(responseCode = "404", description = "Book or user not found"),
-        @ApiResponse(responseCode = "409", description = "User has already reviewed this book"),
-        @ApiResponse(responseCode = "422", description = "Invalid review data")
-    })
     public ResponseEntity<Review> createReview(@Valid @RequestBody ReviewRequest request) {
         Review review = bookService.createReview(
                 request.userId(),

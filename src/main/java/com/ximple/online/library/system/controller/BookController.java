@@ -4,8 +4,6 @@ import com.ximple.online.library.system.domain.Book;
 import com.ximple.online.library.system.service.BookService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -23,12 +21,6 @@ public class BookController {
 
     @GetMapping
     @Operation(summary = "Search books", description = "Search books by title, author, genre, etc.")
-    @ApiResponses(value = {
-        @ApiResponse(responseCode = "200", description = "Successfully retrieved books"),
-        @ApiResponse(responseCode = "400", description = "Invalid request parameters"),
-        @ApiResponse(responseCode = "403", description = "Access forbidden"),
-        @ApiResponse(responseCode = "500", description = "Internal server error")
-    })
     public ResponseEntity<Page<Book>> searchBooks(
             @RequestParam(required = false) String title,
             @RequestParam(required = false) String author,
