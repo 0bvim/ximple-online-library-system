@@ -11,7 +11,7 @@ import java.util.Optional;
 @Repository
 public class RunRepository {
 
-    private List<Run> runs = new ArrayList<>();
+    private final List<Run> runs = new ArrayList<>();
 
     List<Run> findAll() {
         return runs;
@@ -29,7 +29,7 @@ public class RunRepository {
 
     void update(Run run, Integer id) {
         Optional<Run> existingRun = findById(id);
-        if (existingRun.isPresent()) runs.set(runs.indexOf(existingRun.get()), run);
+        existingRun.ifPresent(value -> runs.set(runs.indexOf(value), run));
     }
 
     void delete(Integer id) {
