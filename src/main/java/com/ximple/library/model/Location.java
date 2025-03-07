@@ -1,4 +1,4 @@
-package com.ximple.library.run;
+package com.ximple.library.model;
 
 public enum Location {
     INDOOR, OUTDOOR

@@ -1,5 +1,7 @@
-package com.ximple.library.run;
+package com.ximple.library.controller;
 
+import com.ximple.library.model.Run;
+import com.ximple.library.repository.RunRepository;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -12,11 +14,9 @@ import java.util.Optional;
 public class RunController {
 
     private final RunRepository RunRepository;
-    private final RunRepository runRepository;
 
     public RunController(RunRepository RunRepository, RunRepository runRepository) {
         this.RunRepository = RunRepository;
-        this.runRepository = runRepository;
     }
 
     @GetMapping("")
@@ -44,7 +44,7 @@ public class RunController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")
     void delete(@PathVariable Integer id) {
-        RunRepository.delete(runRepository.findById(id).get());
+        RunRepository.delete(RunRepository.findById(id).get());
     }
 
     @GetMapping("/location/{location}")

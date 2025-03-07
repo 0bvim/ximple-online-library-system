@@ -1,5 +1,6 @@
-package com.ximple.library.run;
+package com.ximple.library.repository;
 
+import com.ximple.library.model.Run;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.simple.JdbcClient;

@@ -1,4 +1,4 @@
-package com.ximple.library.run;
+package com.ximple.library.model;
 
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Positive;
@@ -16,8 +16,6 @@ public record Run(
         LocalDateTime completedOn,
         @Positive(message = "Miles must be greater than 0")
         Integer miles,
-        Location location,
-        @Version
-        Integer version
+        Location location
 ) {
 }

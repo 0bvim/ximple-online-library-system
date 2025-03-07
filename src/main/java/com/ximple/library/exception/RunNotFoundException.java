@@ -1,4 +1,4 @@
-package com.ximple.library.run;
+package com.ximple.library.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
