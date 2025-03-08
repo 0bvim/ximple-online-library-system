@@ -32,14 +32,6 @@ public final class User {
                 return new User(UUID.randomUUID(), userDTO.username(), userDTO.email());
         }
 
-        public @NotEmpty(message = "Username is required") String username() {
-        return username;
-    }
-
-    public @NotEmpty(message = "E-mail is required") String email() {
-        return email;
-    }
-
     @Override
     public boolean equals(Object obj) {
         if (obj == this) return true;

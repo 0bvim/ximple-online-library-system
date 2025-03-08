@@ -1,7 +1,6 @@
 package com.ximple.library.controller;
 
 import com.ximple.library.dto.UserDTO;
-import com.ximple.library.repository.UserRepository;
 import com.ximple.library.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
