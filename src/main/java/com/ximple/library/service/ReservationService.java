@@ -51,7 +51,7 @@ public class ReservationService {
     public List<ReservationDTO> findAll() {
         return reservationRepository.findAll()
                 .stream()
-                .map(reservation -> reservation.toDTO())
+                .map(Reservation::toDTO)
                 .collect(Collectors.toList());
     }
 
