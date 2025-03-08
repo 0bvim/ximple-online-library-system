@@ -68,8 +68,4 @@ public final class Review {
     public ReviewDTO toDTO() {
         return new ReviewDTO(id, bookId, userId, rating, comment, createdAt, updatedAt);
     }
-
-    public void setUpdatedAt(LocalDateTime now) {
-        this.updatedAt = now;
-    }
 }
