@@ -1,6 +1,7 @@
 package com.ximple.library.controller;
 
 import com.ximple.library.dto.ReviewDTO;
+import com.ximple.library.dto.ReviewUpdateDTO;
 import com.ximple.library.service.ReviewService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -36,5 +37,11 @@ public class ReviewController {
     @Operation(summary = "Create a review", description = "Submit a review for a book")
     public ResponseEntity<ReviewDTO> createReview(@Valid @RequestBody ReviewDTO reviewDTO) {
         return ResponseEntity.ok(reviewService.createReview(reviewDTO));
+    }
+
+    @PutMapping
+    @Operation(summary = "Update a review", description = "Update a review for a book")
+    public ResponseEntity<ReviewDTO> updateReview(@Valid @RequestBody ReviewUpdateDTO reviewDTO) {
+        return ResponseEntity.ok(reviewService.updateReview(reviewDTO));
     }
 }

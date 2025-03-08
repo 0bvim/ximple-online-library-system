@@ -1,14 +1,17 @@
 package com.ximple.library.service;
 
 import com.ximple.library.dto.ReviewDTO;
+import com.ximple.library.dto.ReviewUpdateDTO;
 import com.ximple.library.model.Book;
 import com.ximple.library.model.Review;
 import com.ximple.library.model.User;
 import com.ximple.library.repository.BookRepository;
 import com.ximple.library.repository.ReviewRepository;
 import com.ximple.library.repository.UserRepository;
+import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -60,6 +63,7 @@ public class ReviewService {
                 reviewDTO.userId(),
                 reviewDTO.rating(),
                 reviewDTO.comment(),
+                LocalDateTime.now(),
                 LocalDateTime.now()
         );
 
@@ -72,5 +76,23 @@ public class ReviewService {
         return reviewRepository.findByBookId(bookId).stream()
                 .map(Review::toDTO)
                 .collect(Collectors.toList());
+    }
+
+    @Transactional
+    public ReviewDTO updateReview(@Valid ReviewUpdateDTO reviewDTO) {
+        log.debug("Updating review with ID: {}", reviewDTO.id());
+
+        Optional<Review> existingReview = reviewRepository.findById(reviewDTO.id());
+        if (existingReview.isEmpty()) {
+            throw new IllegalArgumentException("Review does not exist");
+        }
+
+        Review review = existingReview.get();
+        review.setRating(reviewDTO.rating());
+        review.setComment(reviewDTO.comment());
+        review.setUpdatedAt(LocalDateTime.now());
+
+        review = reviewRepository.save(review);
+        return review.toDTO();
     }
 }

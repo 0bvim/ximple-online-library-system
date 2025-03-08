@@ -6,13 +6,14 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 public record ReviewDTO(
-        @JsonProperty(access = JsonProperty.Access.READ_ONLY)
         UUID id,
         UUID bookId,
         UUID userId,
         int rating,
         String comment,
         @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-        LocalDateTime createdAt
+        LocalDateTime createdAt,
+        @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+        LocalDateTime updatedAt
 ) {
 }

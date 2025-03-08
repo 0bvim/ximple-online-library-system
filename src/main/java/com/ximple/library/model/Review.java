@@ -31,6 +31,7 @@ public final class Review {
     @Size(max = 200, message = "Comment should be less than 200 characters")
     private String comment;
     private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
 
     @Override
     public boolean equals(Object obj) {
@@ -42,26 +43,33 @@ public final class Review {
                 Objects.equals(this.userId, that.userId) &&
                 this.rating == that.rating &&
                 Objects.equals(this.comment, that.comment) &&
-                Objects.equals(this.createdAt, that.createdAt);
+                Objects.equals(this.createdAt, that.createdAt) &&
+                Objects.equals(this.updatedAt, that.updatedAt);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, bookId, userId, rating, comment, createdAt);
+        return Objects.hash(id, bookId, userId, rating, comment, createdAt, updatedAt);
     }
 
     @Override
     public String toString() {
-        return "Review[" +
-                "id=" + id + ", " +
-                "bookId=" + bookId + ", " +
-                "userId=" + userId + ", " +
-                "rating=" + rating + ", " +
-                "comment=" + comment + ", " +
-                "createdAt=" + createdAt + ']';
+        return "Review{" +
+                "id=" + id +
+                ", bookId=" + bookId +
+                ", userId=" + userId +
+                ", rating=" + rating +
+                ", comment='" + comment + '\'' +
+                ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
+                '}';
     }
 
     public ReviewDTO toDTO() {
-        return new ReviewDTO(id, bookId, userId, rating, comment, createdAt);
+        return new ReviewDTO(id, bookId, userId, rating, comment, createdAt, updatedAt);
+    }
+
+    public void setUpdatedAt(LocalDateTime now) {
+        this.updatedAt = now;
     }
 }
