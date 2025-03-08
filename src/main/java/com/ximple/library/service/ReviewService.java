@@ -66,4 +66,11 @@ public class ReviewService {
         review = reviewRepository.save(review);
         return review.toDTO();
     }
+
+    public List<ReviewDTO> findByBookId(UUID bookId) {
+        log.debug("Fetching reviews for book ID: {}", bookId);
+        return reviewRepository.findByBookId(bookId).stream()
+                .map(Review::toDTO)
+                .collect(Collectors.toList());
+    }
 }
