@@ -12,4 +12,8 @@ stop:
 	@echo "Stopping..."
 	@docker compose down
 
-.PHONY: all build run stop
+logs:
+	@echo "Showing logs..."
+	@docker compose logs -f
+
+.PHONY: all build run stop logs
