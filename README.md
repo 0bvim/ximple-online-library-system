@@ -70,3 +70,16 @@ erDiagram
         date created_at
     }
 ```
+
+
+
+## References
+
+- [Spring and Postgres Docker](https://www.youtube.com/watch?v=_Gdb-jK3Sr4)
+- [Response Entity](https://www.baeldung.com/spring-response-entity)
+- [Exception Handling](https://www.baeldung.com/exception-handling-for-rest-with-spring) 
+- [Enumerated Types](https://stackoverflow.com/questions/67825729/using-enums-in-a-spring-entity/67826028#67826028)
+- [Working With Records](https://www.youtube.com/watch?v=gJ9DYC-jswo)
+- [Jason Young](https://www.youtube.com/watch?v=eC5X0NEZ8hE)
+- [Pessimistic Locking](https://www.youtube.com/watch?v=0xHdv7LKu1Q)
+- 
