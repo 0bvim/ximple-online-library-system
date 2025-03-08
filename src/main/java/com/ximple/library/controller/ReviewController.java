@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/reviews")
 @Tag(name = "Review", description = "Operations pertaining to reviews")
-/**
- * Controller class for managing reviews.
+/*
+  Controller class for managing reviews.
  */
 public class ReviewController {
   private final ReviewService reviewService;
