@@ -1,5 +1,5 @@
 -- Insert sample users
-INSERT INTO "User" (id, username, email)
+INSERT INTO Users (id, username, email)
 VALUES ('a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11', 'john_doe', 'john@example.com'),
        ('b0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12', 'jane_smith', 'jane@example.com'),
        ('c0eebc99-9c0b-4ef8-bb6d-6bb9bd380a13', 'bob_wilson', 'bob@example.com')

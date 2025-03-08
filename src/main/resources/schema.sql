@@ -2,10 +2,10 @@
 DROP TABLE IF EXISTS Review CASCADE;
 DROP TABLE IF EXISTS Reservation CASCADE;
 DROP TABLE IF EXISTS Book CASCADE;
-DROP TABLE IF EXISTS "User" CASCADE;
+DROP TABLE IF EXISTS Users CASCADE;
 
 -- Create the User table if it does not exist
-CREATE TABLE IF NOT EXISTS "User"
+CREATE TABLE IF NOT EXISTS Users
 (
     id       UUID PRIMARY KEY,
     username VARCHAR(255) NOT NULL,
@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS Reservation
     due_date         TIMESTAMP   NOT NULL,
     status           VARCHAR(20) NOT NULL,
     CONSTRAINT fk_book FOREIGN KEY (book_id) REFERENCES Book (id) ON DELETE CASCADE,
-    CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES "User" (id) ON DELETE CASCADE
+    CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES Users (id) ON DELETE CASCADE
 );
 
 -- Create the Review table if it does not exist
@@ -46,5 +46,5 @@ CREATE TABLE IF NOT EXISTS Review
     comment    VARCHAR(50),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT fk_review_book FOREIGN KEY (book_id) REFERENCES Book (id) ON DELETE CASCADE,
-    CONSTRAINT fk_review_user FOREIGN KEY (user_id) REFERENCES "User" (id) ON DELETE CASCADE
+    CONSTRAINT fk_review_user FOREIGN KEY (user_id) REFERENCES Users (id) ON DELETE CASCADE
 );
