@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/reviews")
@@ -21,9 +22,13 @@ public class ReviewController {
         this.reviewService = reviewService;
     }
 
-    @GetMapping("")
-    @Operation(summary = "Get all reviews", description = "Get all reviews in the library")
-    public ResponseEntity<List<ReviewDTO>> findAll() {
+    @GetMapping
+    @Operation(summary = "Get all reviews or filter by book ID", description = "Get all reviews in the library or filter by book ID")
+    public ResponseEntity<List<ReviewDTO>> getReviews(@RequestParam(required = false) UUID bookId) {
+        if (bookId != null) {
+            return ResponseEntity.ok(reviewService.findByBookId(bookId));
+        }
+
         return ResponseEntity.ok(reviewService.findAll());
     }
 
