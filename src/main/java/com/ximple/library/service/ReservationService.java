@@ -13,12 +13,22 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+/**
+ * Service class for managing reservations.
+ */
 @Service
 public class ReservationService {
   private final ReservationRepository reservationRepository;
   private final BookRepository bookRepository;
   private final UserRepository userRepository;
 
+  /**
+   * Constructs a new ReservationService.
+   *
+   * @param reservationRepository the reservation repository
+   * @param bookRepository the book repository
+   * @param userRepository the user repository
+   */
   public ReservationService(ReservationRepository reservationRepository,
       BookRepository bookRepository, UserRepository userRepository) {
     this.reservationRepository = reservationRepository;
@@ -26,6 +36,12 @@ public class ReservationService {
     this.userRepository = userRepository;
   }
 
+  /**
+   * Reserves a book for a user.
+   *
+   * @param reservationDTO the reservation data transfer object
+   * @return the reservation data transfer object
+   */
   @Transactional
   public ReservationDTO reserveBook(ReservationBodyDTO reservationDTO) {
     if (!bookRepository.existsById(reservationDTO.bookId())) {
@@ -48,6 +64,11 @@ public class ReservationService {
     return reservation.toDTO();
   }
 
+  /**
+   * Retrieves all reservations.
+   *
+   * @return a list of reservation data transfer objects
+   */
   public List<ReservationDTO> findAll() {
     return reservationRepository.findAll()
         .stream()
@@ -55,6 +76,11 @@ public class ReservationService {
         .collect(Collectors.toList());
   }
 
+  /**
+   * Deletes a reservation by ID.
+   *
+   * @param id the reservation ID
+   */
   @Transactional
   public void deleteReservation(UUID id) {
     Reservation reservation = reservationRepository.findById(id).orElseThrow(
@@ -64,10 +90,22 @@ public class ReservationService {
     reservationRepository.deleteById(id);
   }
 
+  /**
+   * Retrieves a reservation by ID.
+   *
+   * @param id the reservation ID
+   * @return a list of reservation data transfer objects
+   */
   public List<ReservationDTO> findById(UUID id) {
     return reservationRepository.findById(id).stream().map(Reservation::toDTO).toList();
   }
 
+  /**
+   * Retrieves reservations by book ID.
+   *
+   * @param bookId the book ID
+   * @return a list of reservation data transfer objects
+   */
   public List<ReservationDTO> findByBookId(UUID bookId) {
     return reservationRepository.findByBookId(bookId).stream().toList();
   }
