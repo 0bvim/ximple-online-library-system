@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS Review
     book_id    UUID NOT NULL,
     user_id    UUID NOT NULL,
     rating     INTEGER CHECK (rating >= 1 AND rating <= 5),
-    comment    VARCHAR(50),
+    comment    VARCHAR(200),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT fk_review_book FOREIGN KEY (book_id) REFERENCES Book (id) ON DELETE CASCADE,
     CONSTRAINT fk_review_user FOREIGN KEY (user_id) REFERENCES Users (id) ON DELETE CASCADE
