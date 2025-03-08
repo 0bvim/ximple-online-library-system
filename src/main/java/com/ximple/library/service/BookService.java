@@ -13,6 +13,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
+/**
+ * Service class for managing books.
+ */
 public class BookService {
   private final BookRepository bookRepository;
   private static final Logger log = LoggerFactory.getLogger(BookService.class);
@@ -22,11 +25,23 @@ public class BookService {
     log.info("BookService initialized");
   }
 
+  /**
+   * Retrieves all books.
+   *
+   * @return a list of BookDTO objects
+   */
   public List<BookDTO> findAll() {
     log.debug("Fetching all books");
     return bookRepository.findAll().stream().map(Book::toDTO).collect(Collectors.toList());
   }
 
+  /**
+   * Retrieves a book by its ID.
+   *
+   * @param id the UUID of the book
+   * @return the BookDTO object
+   * @throws BookNotFoundException if the book is not found
+   */
   public BookDTO findById(UUID id) {
     log.debug("Searching for book with id: {}", id);
     return bookRepository.findById(id).map(Book::toDTO).orElseThrow(() -> {
@@ -35,6 +50,12 @@ public class BookService {
     });
   }
 
+  /**
+   * Retrieves books by their title.
+   *
+   * @param title the title of the book
+   * @return a list of BookDTO objects
+   */
   public List<BookDTO> findByTitle(String title) {
     log.debug("Searching for books with title: {}", title);
     List<BookDTO> books =
@@ -43,6 +64,13 @@ public class BookService {
     return books;
   }
 
+  /**
+   * Retrieves a book by its ISBN.
+   *
+   * @param isbn the ISBN of the book
+   * @return the BookDTO object
+   * @throws BookNotFoundException if the book is not found
+   */
   public BookDTO findByIsbn(String isbn) {
     log.debug("Searching for book with ISBN: {}", isbn);
     return bookRepository.findByIsbn(isbn).stream().map(Book::toDTO).findFirst().orElseThrow(() -> {
@@ -51,6 +79,13 @@ public class BookService {
     });
   }
 
+  /**
+   * Retrieves a book by its author.
+   *
+   * @param author the author of the book
+   * @return the BookDTO object
+   * @throws BookNotFoundException if the book is not found
+   */
   public BookDTO findByAuthor(String author) {
     log.debug("Searching for book by author: {}", author);
     return bookRepository.findByAuthor(author)
@@ -63,6 +98,13 @@ public class BookService {
         });
   }
 
+  /**
+   * Retrieves books by their genre.
+   *
+   * @param genre the genre of the book
+   * @return a list of BookDTO objects
+   * @throws BookNotFoundException if no books are found in the genre
+   */
   public List<BookDTO> findByGenre(String genre) {
     log.debug("Searching for books in genre: {}", genre);
     List<BookDTO> books = bookRepository.findByGenre(genre.toUpperCase())
@@ -79,6 +121,12 @@ public class BookService {
     return books;
   }
 
+  /**
+   * Adds a new book.
+   *
+   * @param book the BookDTO object
+   * @throws IllegalArgumentException if a book with the same ISBN already exists
+   */
   @Transactional
   public void addBook(BookDTO book) {
     log.debug("Attempting to add new book with ISBN: {}", book.isbn());
@@ -95,6 +143,12 @@ public class BookService {
     log.info("Successfully added new book: {}", newBook.getTitle());
   }
 
+  /**
+   * Updates an existing book.
+   *
+   * @param book the BookDTO object
+   * @throws BookNotFoundException if the book is not found
+   */
   @Transactional
   public void updateBook(BookDTO book) {
     log.debug("Attempting to update book with id: {}", book.isbn());
@@ -114,6 +168,12 @@ public class BookService {
     log.info("Successfully updated book: {}", existingBook.getFirst().getTitle());
   }
 
+  /**
+   * Deletes a book by its ISBN.
+   *
+   * @param isbn the ISBN of the book
+   * @throws BookNotFoundException if the book is not found
+   */
   @Transactional
   public void deleteBook(String isbn) {
     log.debug("Attempting to delete book with ISBN: {}", isbn);
