@@ -1,3 +1,4 @@
+
 package com.ximple.library.controller;
 
 import com.ximple.library.dto.ReservationBodyDTO;
@@ -13,13 +14,27 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/reservations")
 @Tag(name = "Reservation", description = "Operations pertaining to reservations")
+/*
+   Controller class for managing reservations.
+ */
 public class ReservationController {
   private final ReservationService reservationService;
 
+  /**
+   * Constructs a new ReservationController.
+   *
+   * @param reservationService the reservation service
+   */
   public ReservationController(ReservationService reservationService) {
     this.reservationService = reservationService;
   }
 
+  /**
+   * Retrieves all reservations or filters by ID.
+   *
+   * @param id the reservation ID (optional)
+   * @return a ResponseEntity containing a list of reservation data transfer objects
+   */
   @GetMapping
   @Operation(summary = "Get all reservations", description = "Get all reservations in the library")
   public ResponseEntity<List<ReservationDTO>> getReservation(
@@ -31,14 +46,25 @@ public class ReservationController {
     return ResponseEntity.ok(reservationService.findAll());
   }
 
+  /**
+   * Retrieves all reservations for a book.
+   *
+   * @param bookId the book ID
+   * @return a ResponseEntity containing a list of reservation data transfer objects
+   */
   @GetMapping("/book/{bookId}")
   @Operation(
       summary = "Get all reservations for a book", description = "Get all reservations for a book")
-  public ResponseEntity<List<ReservationDTO>>
-  getReservationsByBookId(@PathVariable UUID bookId) {
+  public ResponseEntity<List<ReservationDTO>> getReservationsByBookId(@PathVariable UUID bookId) {
     return ResponseEntity.ok(reservationService.findByBookId(bookId));
   }
 
+  /**
+   * Reserves a book for a user.
+   *
+   * @param reservationDTO the reservation data transfer object
+   * @return a ResponseEntity containing the created reservation data transfer object
+   */
   @PostMapping
   @Operation(summary = "Reserve a book", description = "Reserve a book for a user")
   public ResponseEntity<ReservationDTO> reserveBook(
@@ -46,6 +72,12 @@ public class ReservationController {
     return ResponseEntity.ok(reservationService.reserveBook(reservationDTO));
   }
 
+  /**
+   * Deletes a reservation by ID.
+   *
+   * @param id the reservation ID
+   * @return a ResponseEntity with no content
+   */
   @DeleteMapping("/{id}")
   @Operation(summary = "Delete a reservation", description = "Delete a reservation by id")
   public ResponseEntity<Void> deleteReservation(@PathVariable UUID id) {
