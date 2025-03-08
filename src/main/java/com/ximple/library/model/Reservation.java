@@ -1,7 +1,7 @@
 package com.ximple.library.model;
 
-import com.ximple.library.utils.OneOf;
-import jakarta.validation.constraints.NotBlank;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.validation.constraints.NotEmpty;
 import org.springframework.data.annotation.Id;
 
@@ -10,16 +10,16 @@ import java.util.UUID;
 
 public record Reservation(
         @Id
-        Long id,
-        String bookId,
-        String userId,
-        @NotEmpty
+        @GeneratedValue(strategy = GenerationType.UUID)
+        UUID id,
+        @NotEmpty(message = "Book ID is required")
+        UUID bookId,
+        @NotEmpty(message = "User ID is required")
+        UUID userId,
+        @NotEmpty(message = "Reservation date is required")
         LocalDateTime reservationDate,
         @NotEmpty
         LocalDateTime dueDate,
-        @OneOf(Status.class)
-        Status status
-
-
+        String status
 ) {
 }
