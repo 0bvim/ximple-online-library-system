@@ -44,4 +44,11 @@ public class ReviewController {
     public ResponseEntity<ReviewDTO> updateReview(@Valid @RequestBody ReviewUpdateDTO reviewDTO) {
         return ResponseEntity.ok(reviewService.updateReview(reviewDTO));
     }
+
+    @DeleteMapping
+    @Operation(summary = "Delete a review", description = "Delete a review for a book")
+    public ResponseEntity<Void> deleteReview(@RequestParam UUID reviewId) {
+        reviewService.deleteReview(reviewId);
+        return ResponseEntity.noContent().build();
+    }
 }

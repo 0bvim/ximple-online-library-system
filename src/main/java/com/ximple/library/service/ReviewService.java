@@ -94,4 +94,16 @@ public class ReviewService {
         review = reviewRepository.save(review);
         return review.toDTO();
     }
+
+    public void deleteReview(UUID reviewId) {
+        log.debug("Deleting review with ID: {}", reviewId);
+
+        Optional<Review> existingReview = reviewRepository.findById(reviewId);
+        if (existingReview.isEmpty()) {
+            throw new IllegalArgumentException("Review does not exist");
+        }
+
+        reviewRepository.deleteById(reviewId);
+        log.info("Review with ID: {} has been deleted", reviewId);
+    }
 }
