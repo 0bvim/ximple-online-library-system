@@ -58,4 +58,9 @@ public final class User {
     public UserDTO toDTO() {
         return new UserDTO(id, username, email);
     }
+
+    public void updateFromDTO(UserDTO userDTO) {
+        this.username = userDTO.username();
+        this.email = userDTO.email();
+    }
 }
