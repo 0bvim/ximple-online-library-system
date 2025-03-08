@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/books")
 @Tag(name = "Book", description = "Operations pertaining to books")
 
-/**
- * Controller for managing books in the library.
+/*
+  Controller for managing books in the library.
  */
 public class BookController {
   private final BookService bookService;
