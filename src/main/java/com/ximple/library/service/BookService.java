@@ -13,8 +13,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-/**
- * Service class for managing books.
+/*
+  Service class for managing books.
  */
 public class BookService {
   private final BookRepository bookRepository;

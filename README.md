@@ -14,10 +14,6 @@ A simple book management system that allows users to reserve books, rate books, 
 - [Swagger API Documentation](#swagger-api-documentation)
 - [References](#references)
 - [Used AI](#used-ai)
-- [License](#license)
-- [Author](#author)
-- [Contributing](#contributing)
-- [Acknowledgements](#acknowledgements)
 
 ## Features
 - User Management
@@ -146,6 +142,7 @@ erDiagram
 - `make run` - Run the application.
 - `make stop` - Stop the application.
 - `make logs` - Show the application logs.
+- `make lint` - Lint the application.
 
 ## Running the Application
 The application runs on port 8080 by default. You can access the application at http://localhost:8080/api/{WhatYouDesire}.
