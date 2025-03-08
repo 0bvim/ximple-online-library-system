@@ -140,7 +140,7 @@ public class BookService {
             log.error("Cannot delete: book not found with ISBN: {}", isbn);
             throw new BookNotFoundException();
         }
-        bookRepository.delete(books.get(0));
+        bookRepository.delete(books.getFirst());
         log.info("Successfully deleted book with ISBN: {}", isbn);
     }
 }
