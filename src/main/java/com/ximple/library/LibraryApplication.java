@@ -9,13 +9,11 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @SpringBootApplication
 @EnableJpaRepositories
 @OpenAPIDefinition(
-		info = @Info(title = "Online Library API", version = "1.0", description = "Online library system with book search, reservations, and reviews")
-)
+    info = @Info(title = "Online Library API", version = "1.0",
+        description = "Online library system with book search, reservations, and reviews"))
 
 public class LibraryApplication {
-
-	public static void main(String[] args) {
-		SpringApplication.run(LibraryApplication.class, args);
-	}
-
+  public static void main(String[] args) {
+    SpringApplication.run(LibraryApplication.class, args);
+  }
 }

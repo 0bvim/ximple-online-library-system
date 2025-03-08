@@ -29,7 +29,7 @@ A simple book management system that allows users to reserve books, rate books, 
 - Dockerized
 - Database Integration
 - Logging
-- CI/CD
+- CI
 - Monitoring
 
 ## Technologies
