@@ -15,9 +15,9 @@ VALUES ('d0eebc99-9c0b-4ef8-bb6d-6bb9bd380a14', 'Clean Code', 'Robert C. Martin'
 ON CONFLICT (isbn) DO NOTHING;
 
 -- Insert sample reservations
-INSERT INTO Reservation (id, book_id, user_id, reservation_date, due_date, status)
-VALUES ('293125cb-a934-468f-8967-7af40605a513', 'd0eebc99-9c0b-4ef8-bb6d-6bb9bd380a14', 'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11', '2024-03-01 10:00:00', '2024-03-15 10:00:00', 'CONFIRMED'),
-       ('511e71aa-66fc-474f-a4c9-ceceff9996cf', 'e0eebc99-9c0b-4ef8-bb6d-6bb9bd380a15', 'b0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12', '2024-03-02 14:30:00', '2024-03-16 14:30:00', 'COMPLETED')
+INSERT INTO Reservation (id, book_id, user_id, reservation_date)
+VALUES ('293125cb-a934-468f-8967-7af40605a513', 'd0eebc99-9c0b-4ef8-bb6d-6bb9bd380a14', 'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11', '2024-03-01 10:00:00'),
+       ('511e71aa-66fc-474f-a4c9-ceceff9996cf', 'e0eebc99-9c0b-4ef8-bb6d-6bb9bd380a15', 'b0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12', '2024-03-02 14:30:00')
 ON CONFLICT (id) DO NOTHING;
 
 -- Insert sample reviews
