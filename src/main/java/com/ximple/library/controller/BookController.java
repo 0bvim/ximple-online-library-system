@@ -13,13 +13,12 @@ import java.util.UUID;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * Controller for managing books in the library.
+ */
 @RestController
 @RequestMapping("/api/books")
 @Tag(name = "Book", description = "Operations pertaining to books")
-
-/*
-  Controller for managing books in the library.
- */
 public class BookController {
   private final BookService bookService;
 

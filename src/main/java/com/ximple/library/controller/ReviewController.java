@@ -11,12 +11,12 @@ import java.util.UUID;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * Controller class for managing reviews.
+ */
 @RestController
 @RequestMapping("/api/reviews")
 @Tag(name = "Review", description = "Operations pertaining to reviews")
-/*
-  Controller class for managing reviews.
- */
 public class ReviewController {
   private final ReviewService reviewService;
 

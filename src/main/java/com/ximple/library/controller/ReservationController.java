@@ -11,12 +11,12 @@ import java.util.UUID;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * Controller class for managing reservations.
+ */
 @RestController
 @RequestMapping("/api/reservations")
 @Tag(name = "Reservation", description = "Operations pertaining to reservations")
-/*
-   Controller class for managing reservations.
- */
 public class ReservationController {
   private final ReservationService reservationService;
 
