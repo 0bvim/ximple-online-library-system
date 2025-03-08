@@ -19,6 +19,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+/**
+ * Service class for managing reviews.
+ */
 @Service
 public class ReviewService {
   private final ReviewRepository reviewRepository;
@@ -26,6 +29,13 @@ public class ReviewService {
   private final UserRepository userRepository;
   private static final Logger log = LoggerFactory.getLogger(ReviewService.class);
 
+  /**
+   * Constructs a new ReviewService.
+   *
+   * @param reviewRepository the review repository
+   * @param bookRepository the book repository
+   * @param userRepository the user repository
+   */
   public ReviewService(ReviewRepository reviewRepository, BookRepository bookRepository,
       UserRepository userRepository) {
     this.reviewRepository = reviewRepository;
@@ -34,11 +44,22 @@ public class ReviewService {
     log.info("ReviewService instantiated");
   }
 
+  /**
+   * Retrieves all reviews.
+   *
+   * @return a list of review data transfer objects
+   */
   public List<ReviewDTO> findAll() {
     log.debug("Fetching all reviews");
     return reviewRepository.findAll().stream().map(Review::toDTO).collect(Collectors.toList());
   }
 
+  /**
+   * Creates a new review.
+   *
+   * @param reviewDTO the review data transfer object
+   * @return the created review data transfer object
+   */
   @Transactional
   public ReviewDTO createReview(ReviewDTO reviewDTO) {
     log.debug("Creating a new review");
@@ -60,6 +81,12 @@ public class ReviewService {
     return review.toDTO();
   }
 
+  /**
+   * Retrieves reviews by book ID.
+   *
+   * @param bookId the book ID
+   * @return a list of review data transfer objects
+   */
   public List<ReviewDTO> findByBookId(UUID bookId) {
     log.debug("Fetching reviews for book ID: {}", bookId);
     return reviewRepository.findByBookId(bookId)
@@ -68,6 +95,12 @@ public class ReviewService {
         .collect(Collectors.toList());
   }
 
+  /**
+   * Updates an existing review.
+   *
+   * @param reviewDTO the review update data transfer object
+   * @return the updated review data transfer object
+   */
   @Transactional
   public ReviewDTO updateReview(@Valid ReviewUpdateDTO reviewDTO) {
     log.debug("Updating review with ID: {}", reviewDTO.id());
@@ -86,6 +119,11 @@ public class ReviewService {
     return review.toDTO();
   }
 
+  /**
+   * Deletes a review by ID.
+   *
+   * @param reviewId the review ID
+   */
   public void deleteReview(UUID reviewId) {
     log.debug("Deleting review with ID: {}", reviewId);
 
