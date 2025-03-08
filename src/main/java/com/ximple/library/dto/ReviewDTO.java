@@ -12,6 +12,7 @@ public record ReviewDTO(
         UUID userId,
         int rating,
         String comment,
+        @JsonProperty(access = JsonProperty.Access.READ_ONLY)
         LocalDateTime createdAt
 ) {
 }

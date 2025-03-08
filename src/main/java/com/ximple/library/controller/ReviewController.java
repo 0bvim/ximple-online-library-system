@@ -4,10 +4,9 @@ import com.ximple.library.dto.ReviewDTO;
 import com.ximple.library.service.ReviewService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,5 +25,11 @@ public class ReviewController {
     @Operation(summary = "Get all reviews", description = "Get all reviews in the library")
     public ResponseEntity<List<ReviewDTO>> findAll() {
         return ResponseEntity.ok(reviewService.findAll());
+    }
+
+    @PostMapping("")
+    @Operation(summary = "Create a review", description = "Submit a review for a book")
+    public ResponseEntity<ReviewDTO> createReview(@Valid @RequestBody ReviewDTO reviewDTO) {
+        return ResponseEntity.ok(reviewService.createReview(reviewDTO));
     }
 }

@@ -3,10 +3,7 @@ package com.ximple.library.model;
 import com.ximple.library.dto.ReviewDTO;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,9 +21,9 @@ import java.util.UUID;
 public final class Review {
     @Id
     private UUID id;
-    @NotEmpty(message = "Book ID is required")
+    @NotNull(message = "Book ID is required")
     private UUID bookId;
-    @NotEmpty(message = "User ID is required")
+    @NotNull(message = "User ID is required")
     private UUID userId;
     @Min(1)
     @Max(5)
