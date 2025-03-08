@@ -1,3 +1,45 @@
+# Book Management System
+A simple book management system that allows users to reserve books, rate books, and manage their accounts.
+
+## Table of Contents
+- [Features](#features)
+- [Technologies](#technologies)
+- [Architecture Overview](#architecture-overview)
+- [Infrastructure](#infrastructure)
+- [Database Schema](#database-schema)
+- [Getting Started](#getting-started)
+- [Running the Application](#running-the-application)
+- [About API Endpoints](#about-api-endpoints)
+- [Testing the API](#testing-the-api)
+- [Swagger API Documentation](#swagger-api-documentation)
+- [References](#references)
+- [Used AI](#used-ai)
+- [License](#license)
+- [Author](#author)
+- [Contributing](#contributing)
+- [Acknowledgements](#acknowledgements)
+
+## Features
+- User Management
+- Book Management
+- Reservation Management
+- Rating System
+- Error Handling
+- API Documentation
+- Dockerized
+- Database Integration
+- Logging
+- CI/CD
+- Monitoring
+
+## Technologies
+- Java 21
+- Spring Boot
+- PostgreSQL
+- Docker
+- Swagger
+- GitHub Actions
+
 ## Architecture Overview
 The application is divided into three layers: API, Service, and Data Access. 
 The API layer handles HTTP requests and responses, the Service layer contains the business logic,
@@ -39,6 +81,8 @@ flowchart TD
 ```
 
 ## Infrastructure
+The application is containerized using Docker. The infrastructure layer consists of an API container, a PostgreSQL container, and a database volume for persistent storage.
+I choose to use Docker to containerize the application because it provides a consistent environment for running the application across different platforms and `in my machine it works`.
 ```mermaid
 flowchart TD
     classDef infra fill:#FFC000,color:#000,stroke:#FFC000
@@ -88,9 +132,47 @@ erDiagram
     }
 ```
 
-## Swagger API Documentation
-- http://localhost:8080/swagger-ui/index.html
+## Getting Started
+> Before running the application, make sure you have [*Docker*](https://www.docker.com/get-started/) and [*makefile*](https://www.gnu.org/software/make/) installed on your machine.
 
+1. Clone the repository.
+2. Run the following command to start the application:
+```shell
+    make
+```
+
+- Have another commands in makefile like:
+- `make build` - Build the application.
+- `make run` - Run the application.
+- `make stop` - Stop the application.
+- `make logs` - Show the application logs.
+
+## Running the Application
+The application runs on port 8080 by default. You can access the application at http://localhost:8080/api/{WhatYouDesire}.
+
+## Swagger API Documentation
+Swagger is a tool that helps you document and test your RESTful APIs. You can access the Swagger UI at the following URL:
+- http://localhost:8080/swagger-ui/index.html
+And check all endpoints and test them.
+
+## About API Endpoints
+The application provides a set of RESTful endpoints for managing books, reservations, health check and reviews.
+Health check endpoint is used to check the status of the application and commonly used in monitoring tools and not intended for end-users.
+Here is how to test health check endpoint:
+
+```shell
+curl --request GET \
+  --url 'http://localhost:8080/actuator/health' | jq
+```
+
+You should see a response similar to this:
+![img.png](img.png)
+
+## Testing the API
+You can test the API using tools like *Postman*, *curl*, *insomnia*, *browser* or *.http file*.
+I have provided a sample *[.http file](useful-request-files/generated-requests.http)*, [*insomnia.json*](useful-request-files/Insomnia_import.json) with a bunch of automations and pre-scripts to you don't burn daylight
+copying and pasting a lot of data to make requests and test the project. 
+You can use this files to test the API endpoints.
 
 ## References
 
