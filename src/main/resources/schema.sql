@@ -30,8 +30,6 @@ CREATE TABLE IF NOT EXISTS Reservation
     book_id          UUID        NOT NULL,
     user_id          UUID        NOT NULL,
     reservation_date TIMESTAMP   NOT NULL,
-    due_date         TIMESTAMP   NOT NULL,
-    status           VARCHAR(20) NOT NULL,
     CONSTRAINT fk_book FOREIGN KEY (book_id) REFERENCES Book (id) ON DELETE CASCADE,
     CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES Users (id) ON DELETE CASCADE
 );
