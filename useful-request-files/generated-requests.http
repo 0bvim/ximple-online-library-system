@@ -6,41 +6,31 @@ GET http://localhost:8080/api/books
 <> 2025-03-08T141154.404.json
 
 ###
-PUT http://localhost:8080/api/books
-
-###
-POST http://localhost:8080/api/books
-
-###
-DELETE http://localhost:8080/api/books/?
-    isbn={{$random.alphanumeric(8)}}
+GET http://localhost:8080/actuator/health
 
 ###
 GET http://localhost:8080/api/books/author?
-    author={{$random.alphanumeric(8)}}
+    author=J.R.R. Tolkien
 
 ###
 GET http://localhost:8080/api/books/genre?
-    genre={{$random.alphanumeric(8)}}
+    genre=pRoGramMinG
 
 ###
 GET http://localhost:8080/api/books/isbn?
-    isbn={{$random.alphanumeric(8)}}
+    isbn=9780544003415
 
 ###
 GET http://localhost:8080/api/books/title?
-    title={{$random.alphanumeric(8)}}
+    title=Moby Dick
 
 ###
+@id = d0eebc99-9c0b-4ef8-bb6d-6bb9bd380a14
 GET http://localhost:8080/api/books/{{id}}
 
 ###
 GET http://localhost:8080/api/users
 
-<> 2025-03-08T141241.404.json
-
-###
-POST http://localhost:8080/api/users
 
 ###
 GET http://localhost:8080/api/users/email?
@@ -51,38 +41,28 @@ GET http://localhost:8080/api/users/username?
     username={{$random.alphanumeric(8)}}
 
 ###
-GET http://localhost:8080/api/users/{{id}}
-
-###
-PUT http://localhost:8080/api/users/{{id}}
+@id2 = d96eaa1e-fd5a-4812-9fce-153cc41fef0b
+GET http://localhost:8080/api/users/{{id2}}
 
 ###
 GET http://localhost:8080/api/reviews?
-    bookId={{$random.uuid}}
+    bookId=6e439804-fb6e-4438-8209-f7d2d2f40e3d
 
 ###
 PUT http://localhost:8080/api/reviews
 
 ###
 DELETE http://localhost:8080/api/reviews?
-    reviewId={{$random.uuid}}
-
-###
-POST http://localhost:8080/api/reviews
-
-<> 2025-03-08T141300.400.json
+    reviewId=d1ceb67e-68e4-4c03-af06-7c4d3d548746
 
 ###
 GET http://localhost:8080/api/reservations?
-    id={{$random.uuid}}
+    id=527e3135-a3de-4bc1-81be-5a8a37525b5f
 
 <> 2025-03-08T141314.200.json
 
 ###
-POST http://localhost:8080/api/reservations
+GET http://localhost:8080/api/reservations/book/6e439804-fb6e-4438-8209-f7d2d2f40e3d>
 
 ###
-GET http://localhost:8080/api/reservations/book/{{bookId}}
-
-###
-DELETE http://localhost:8080/api/reservations/{{id}}
+DELETE http://localhost:8080/api/reservations/1143ca89-3acf-470f-8b34-dabf4d127279
