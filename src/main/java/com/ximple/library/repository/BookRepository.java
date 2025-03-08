@@ -18,7 +18,7 @@ public interface BookRepository extends JpaRepository<Book, UUID> {
 
     @Modifying
     @Query("UPDATE Book b SET b.amount = b.amount + 1 WHERE b.id = :id")
-    int incrementAvailableCopies(@Param("id") UUID id);
+    void incrementAvailableCopies(@Param("id") UUID id);
 
     List<Book> findByTitle(String title);
     List<Book> findByAuthor(String author);
