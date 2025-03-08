@@ -11,6 +11,8 @@ import lombok.*;
 import java.util.Objects;
 import java.util.UUID;
 
+@Setter
+@Getter
 @Entity
 @AllArgsConstructor
 public final class Book {
@@ -30,22 +32,6 @@ public final class Book {
 
     public @NotEmpty @NotNull String title() {
         return title;
-    }
-
-    public @NotEmpty @NotNull String author() {
-        return author;
-    }
-
-    public @NotEmpty @NotNull String isbn() {
-        return isbn;
-    }
-
-    public String genre() {
-        return genre;
-    }
-
-    public @Max(20) @NotNull Integer amount() {
-        return amount;
     }
 
     @Override
@@ -80,4 +66,5 @@ public final class Book {
     public BookDTO toDTO() {
         return new BookDTO(id, title, author, isbn, genre, amount);
     }
+
 }
