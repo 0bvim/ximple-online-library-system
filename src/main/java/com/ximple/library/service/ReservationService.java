@@ -70,4 +70,10 @@ public class ReservationService {
                 .map(Reservation::toDTO)
                 .toList();
     }
+
+    public List<ReservationDTO> findByBookId(UUID bookId) {
+        return reservationRepository.findByBookId(bookId)
+                .stream()
+                .toList();
+    }
 }
