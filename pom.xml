@@ -58,11 +58,11 @@
 			<scope>test</scope>
 		</dependency>
 
-		<!--jdbc package (db abstraction)-->
+		<!--jpa package (db abstraction)-->
 		<dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-jdbc</artifactId>
-        </dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
 
 		<!--docker compose package-->
 		<dependency>
@@ -79,10 +79,11 @@
 			<scope>runtime</scope>
 		</dependency>
 
-		<!--jdbc data package-->
+		<!--lombok package-->
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jdbc</artifactId>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<scope>provided</scope>
 		</dependency>
 	</dependencies>
 
