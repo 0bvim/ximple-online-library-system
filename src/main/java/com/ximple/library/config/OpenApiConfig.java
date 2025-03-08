@@ -10,7 +10,16 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
+/*
+ * Configuration class for OpenAPI documentation.
+ */
 public class OpenApiConfig {
+
+  /**
+   * Configures the custom OpenAPI documentation for the Online Library API.
+   *
+   * @return the configured OpenAPI instance
+   */
   @Bean
   public OpenAPI customOpenAPI() {
     return new OpenAPI()
