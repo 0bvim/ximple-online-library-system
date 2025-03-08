@@ -1,25 +1,72 @@
+## Architecture Overview
+The application is divided into three layers: API, Service, and Data Access. The API layer handles HTTP requests and responses, the Service layer contains the business logic, and the Data Access layer interacts with the database.
+```mermaid
+flowchart TD
+    classDef api fill:#92D050,color:#000,stroke:#92D050
+    classDef service fill:#0072C6,color:#fff,stroke:#0072C6
+    classDef data fill:#B4A0FF,color:#000,stroke:#B4A0FF
+    classDef infra fill:#FFC000,color:#000,stroke:#FFC000
 
-### References:
-- [OpenApi Documentation](https://www.youtube.com/watch?v=wtYAqS1GcHE)
-- [OpenApi Documentation 2](https://youtu.be/2o_3hjUPAfQ?si=pyaFNUmky3oaKJ_5)
+    subgraph API["API Layer"]
+        Controller[BookController<br/><i>Handles HTTP requests</i>]:::api
+        Error[GlobalErrorController<br/><i>Manages exceptions</i>]:::api
+    end
 
-## Event-Driven Architecture:
-  - [Devtiro](https://youtu.be/HYBtWRPikgo?si=A5nDv7Mby5C96-MD)
-  - [Alex Hyett](https://youtu.be/gOuAqRaDdHA?si=2CsFYplJ3Ejfoxe-)
+    subgraph Service["Service Layer"]
+        BookSvc[BookService<br/><i>Business logic</i>]:::service
+        ReservationSvc[ReservationService<br/><i>Booking management</i>]:::service
+        ReviewSvc[ReviewService<br/><i>Rating system</i>]:::service
+    end
 
-## Why I choose Maven (basically most used deps manager)
-- [Maven vs Gradle](https://youtu.be/5P9cb0xWyO0?si=hxN-yvt9NNcC91tT)
-- [Maven Docs](https://maven.apache.org/guides/)
+    subgraph Data["Data Access Layer"]
+        Repo[BookRepository<br/><i>JDBC operations</i>]:::data
+        DB[(PostgreSQL<br/>Database)]:::infra
+    end
 
-## Springboot basics
-- [Springboot Guide](https://spring.io/guides/gs/spring-boot)
-- [Springboot Initalizr](https://start.spring.io/)
+    Controller --> BookSvc
+    Controller --> ReservationSvc
+    Controller --> ReviewSvc
+    Error -.->|Handles Errors| Controller
+    BookSvc --> Repo
+    ReservationSvc --> Repo
+    ReviewSvc --> Repo
+    Repo --> DB
+```
 
-## Github
-- [Github Kafka tutorial](https://github.com/devtiro/microservices-kafka-tutorial)
-
-
-## Used AI:
-  - [Claude](https://claude.ai/login)
-  - [ChatGPT](https://chatgpt.com/)
-  - [Gemini](https://gemini.google.com/)
+## Database Schema
+```mermaid
+erDiagram
+    BOOK ||--o{ RESERVATION : "has"
+    BOOK ||--o{ REVIEW : "has"
+    USER ||--o{ RESERVATION : "makes"
+    USER ||--o{ REVIEW : "writes"
+    BOOK {
+        string id PK
+        string title
+        string author
+        string isbn
+        string genre
+        boolean available
+    }
+    USER {
+        string id PK
+        string username
+        string email
+    }
+    RESERVATION {
+        string id PK
+        string book_id FK
+        string user_id FK
+        date reservation_date
+        date due_date
+        string status
+    }
+    REVIEW {
+        string id PK
+        string book_id FK
+        string user_id FK
+        int rating
+        string comment
+        date created_at
+    }
+```
